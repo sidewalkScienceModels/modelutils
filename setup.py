@@ -12,7 +12,7 @@ with open(os.path.join(here, 'requirements.txt')) as f:
 
 setup(
     name='modelutils',
-    version='1.0.0',
+    version='1.0.1',
     description='Generic statistical and modelling utilities',
     author='Mike Pappas',
     install_requires=requires,

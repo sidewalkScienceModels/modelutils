@@ -31,13 +31,17 @@ def average(a):
 
 
 def map_to_attr_op(attr_name_a, attr_name_b, the_list, op_name='div'):
-    assert op_name in ['div', 'mult']
+    assert op_name in ['div', 'mult', 'diff', 'sum']
     attr_a = map_to_attr(attr_name_a, the_list)
     attr_b = map_to_attr(attr_name_b, the_list)
     if op_name == 'div':
         return [safe_div(attr_a[i],attr_b[i]) for i in range(len(the_list))]
     elif op_name == 'mult':
         return [attr_a[i]*attr_b[i] for i in range(len(the_list))]
+    elif op_name == 'diff':
+        return [attr_a[i]-attr_b[i] for i in range(len(the_list))]
+    elif op_name == 'sum':
+        return [attr_a[i]+attr_b[i] for i in range(len(the_list))]
 
 
 def squared_error(x_list, y_list, comparator_func):
