@@ -1,3 +1,5 @@
+import math
+
 def some(val):
     return val is not None
 
@@ -30,6 +32,14 @@ def average(a):
     return float(sum(a))/float(len(a)) if len(a) else None
 
 
+def stdev(a):
+    ave = average(a)
+    var = 0
+    for i in a:
+        var += (i-ave)**2
+    return math.sqrt(var)
+
+
 def map_to_attr_op(attr_name_a, attr_name_b, the_list, op_name='div'):
     assert op_name in ['div', 'mult', 'diff', 'sum']
     attr_a = map_to_attr(attr_name_a, the_list)
@@ -56,3 +66,16 @@ def r_squared(x_list, y_list, model_func):
     mean_error = squared_error(x_list, y_list, lambda x: average(y_list))
     return 1 - (model_error/mean_error)
 
+
+def column_averages(list_of_lists):
+    length = len(list_of_lists[0])
+    averages = []
+    stdevs = []
+    for i in xrange(length):
+        values = []
+        for l in list_of_lists:
+            assert len(l) == length, "All sublists must be the same length!"
+            values.append(l[i])
+        averages.append(average(values))
+        stdevs.append(stdev(values))
+    return averages, stdevs
